@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111024081518) do
+ActiveRecord::Schema.define(:version => 20111024084057) do
 
   create_table "add_ons", :force => true do |t|
     t.integer "catalog_id",                                                                  :null => false
@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(:version => 20111024081518) do
     t.integer  "special_offer_type_id"
     t.datetime "special_offer_from"
     t.datetime "special_offer_until"
-    t.integer  "variant_id",                                                         :null => false
+    t.integer  "variant_id"
     t.string   "name",                  :limit => 50
   end
 
