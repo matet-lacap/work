@@ -11,16 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111021080611) do
+ActiveRecord::Schema.define(:version => 20111024081518) do
 
   create_table "add_ons", :force => true do |t|
-    t.integer "catalog_id",                                  :null => false
-    t.integer "product_id"
-    t.integer "sort_order",                                  :null => false
-    t.string  "name",        :limit => 50
+    t.integer "catalog_id",                                                                  :null => false
+    t.integer "sort_order",                                                                  :null => false
+    t.string  "name",         :limit => 50
     t.text    "description"
-    t.boolean "is_active",                 :default => true, :null => false
-    t.integer "version",                   :default => 0,    :null => false
+    t.boolean "is_active",                                                 :default => true, :null => false
+    t.integer "version",                                                   :default => 0,    :null => false
+    t.decimal "add_on_price",               :precision => 10, :scale => 2, :default => 0.0
+  end
+
+  create_table "add_ons_products", :id => false, :force => true do |t|
+    t.integer "add_on_id"
+    t.integer "product_id"
   end
 
   create_table "admin_roles", :force => true do |t|
@@ -190,12 +195,13 @@ ActiveRecord::Schema.define(:version => 20111021080611) do
 
   create_table "product_prices", :force => true do |t|
     t.integer  "location_id"
-    t.integer  "customer_group_id",                                    :null => false
-    t.integer  "product_variant_id",                                   :null => false
-    t.decimal  "price",                 :precision => 10, :scale => 0, :null => false
+    t.integer  "customer_group_id",                                                  :null => false
+    t.decimal  "price",                               :precision => 10, :scale => 0, :null => false
     t.integer  "special_offer_type_id"
     t.datetime "special_offer_from"
     t.datetime "special_offer_until"
+    t.integer  "variant_id",                                                         :null => false
+    t.string   "name",                  :limit => 50
   end
 
   create_table "products", :force => true do |t|
@@ -355,5 +361,7 @@ ActiveRecord::Schema.define(:version => 20111021080611) do
     t.boolean "is_active",                                 :default => true, :null => false
     t.string  "website"
   end
+
+  add_foreign_key "product_prices", "variants", :name => "product_prices_variant_id_fk", :dependent => :delete
 
 end

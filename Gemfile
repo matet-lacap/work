@@ -9,6 +9,7 @@ gem 'rails', '3.1.0'
 gem 'pg'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
+gem 'foreigner'
 
 # Gems used only for assets and not required
 # in production environments by default.

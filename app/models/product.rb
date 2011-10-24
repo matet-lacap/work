@@ -14,8 +14,11 @@ class Product < ActiveRecord::Base
   belongs_to :vendor
   belongs_to :location
 
-
-  has_many :add_ons
+  #10/24
+  #changed relationship of product-add-on to MANY-TO-MANY
+  #has_many :add_ons
+  has_and_belongs_to_many :add_ons
+  
   has_many :variant
 
 

@@ -4,7 +4,11 @@ class AddOn < ActiveRecord::Base
 # Associations
 
   belongs_to :catalog
-  belongs_to :product
+
+  #10/24
+  #changed relationship of product-add-on to MANY-TO-MANY
+  #belongs_to :product
+  has_and_belongs_to_many :product
 
   has_many :order_lines
 
@@ -12,7 +16,7 @@ class AddOn < ActiveRecord::Base
 
   validates :catalog_id, :presence => true
   validates :name, :presence => true
-  validates :product_id, :presence => true
+  #validates :product_id, :presence => true
   validates :sort_order, :presence => true, :numericality => { :only_integer => true  }
 
 
