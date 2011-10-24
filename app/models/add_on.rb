@@ -8,7 +8,7 @@ class AddOn < ActiveRecord::Base
   #10/24
   #changed relationship of product-add-on to MANY-TO-MANY
   #belongs_to :product
-  has_and_belongs_to_many :product
+  has_and_belongs_to_many :products
 
   has_many :order_lines
 
